@@ -4,34 +4,35 @@ use std::io;
 
 fn main() {
     println!("Guess the Number !");
-    // 变量 默认不可修改
+    // var immutable default
     let min = 0; 
     let max = 1000;
-    // mut 表示可修改
+    // mut: mutable
     let mut rng = rand::thread_rng();
-    // 生成随机数
+    // generate random number
     let secret_number = rng.gen_range(min..=max);
-    // 定义一个计数器
     let mut count = 0;
 
-    // {} 占位符
+    // {} : placeholder
     println!(
         "Pls input your guess ({} ~ {}) !",
         min, max,
     );
 
-    // 循环体
+    // infinite loop
     loop {
 
-        // String::new() 返回Stirng的一个空实例，:: 类似类的静态方法
+        //  create a empty instance of a String.
+        // ::new is an associated function of String
         let mut guess = String::new();
 
         io::stdin()
-        .read_line(&mut guess) // 接收用户输入 赋值给 guess, '&' 是引用
-        .expect("Faild to read line"); // 错误处理方法
+        .read_line(&mut guess) // get input of user, & means reference.
+        .expect("Faild to read line");
 
-        // 把输入转化为u32整型
-        // parse 方法返回一个 Result类型（枚举），配合match语句
+        // trim(): eliminate any whitespace at the beginning and end of String
+        // parse(): converts a string to another type
+        // `:u32` : which type do we want to trans
         let guess: u32 = match guess.trim().parse(){
             Ok(num) => num,
             Err(_) => continue
@@ -40,13 +41,16 @@ fn main() {
         count = count + 1;
         println!("you guessed: {}, times: {}", guess, count);
 
-        // match 分支判断
+        // match (switch)
         match guess.cmp(&secret_number) {
+            // case 1
             Ordering::Less => println!("Too Small"),
+            // case 2
             Ordering::Equal => {
                 println!("Got it");
                 break;
             },
+            // case 3
             Ordering::Greater => println!("Too Big"),
         }
     }
