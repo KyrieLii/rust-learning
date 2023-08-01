@@ -1,4 +1,4 @@
-fn main() {
+pub fn vars() {
     let x = 5;
     let x = x + 1;
     {

@@ -1,4 +1,4 @@
-fn main() {
+pub fn fun() {
 	println!("hellow");
 	f1(888, "abc");
 
