@@ -7,6 +7,9 @@ use functions::fun;
 mod variables;
 use variables::vars;
 
+mod references;
+use references::refs;
+
 // use ferris_says::say;
 // use std::io::{stdout, BufWriter};
 
@@ -20,4 +23,5 @@ fn main() {
     vars();
     fun();
     control();
+    refs();
 }
